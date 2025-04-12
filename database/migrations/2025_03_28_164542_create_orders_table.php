@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->timestamps(); // Isso já cria as colunas created_at e updated_at
+
+            // Campos relacionados ao endereço
             $table->string('add_url');
             $table->string('address_city');
             $table->string('address_company')->nullable();
@@ -34,6 +37,7 @@ return new class extends Migration
             $table->string('address_title')->nullable();
             $table->string('address_zipcode');
             
+            // Campos monetários
             $table->decimal('amount', 10, 2);
             $table->decimal('amount_affiliate', 10, 2)->default(0);
             $table->decimal('amount_brutto', 10, 2);
@@ -47,6 +51,7 @@ return new class extends Migration
             $table->decimal('amount_vat', 10, 2)->default(0);
             $table->decimal('amount_vendor', 10, 2);
             
+            // API e informações de pagamento
             $table->string('api_mode');
             $table->string('billing_city');
             $table->string('billing_company')->nullable();
@@ -69,7 +74,7 @@ return new class extends Migration
             $table->string('billing_type');
             $table->string('billing_zipcode');
             
-            // Outras colunas que são parte do payload
+            // Campos adicionais
             $table->string('buyer_address_city');
             $table->string('buyer_address_company')->nullable();
             $table->string('buyer_address_country');
@@ -102,6 +107,7 @@ return new class extends Migration
             $table->string('first_billing_interval');
             $table->decimal('first_vat_amount', 10, 2);
             
+            // IPN e configurações
             $table->string('invoice_url');
             $table->string('ipn_config_id');
             $table->string('ipn_config_product_ids');
@@ -110,6 +116,8 @@ return new class extends Migration
             $table->string('is_payment_planned');
             $table->integer('item_count');
             $table->string('language');
+            
+            // Licenciamento
             $table->string('license_data_email_2');
             $table->string('license_data_first_name_2');
             $table->string('license_data_last_name_2');
@@ -121,7 +129,7 @@ return new class extends Migration
             $table->string('merchant_id');
             $table->string('merchant_name');
             
-            // Outros campos adicionais do payload
+            // Campos financeiros e de pagamento
             $table->decimal('monthly_amount', 10, 2);
             $table->decimal('monthly_vat_amount', 10, 2);
             $table->string('newsletter_choice');
@@ -208,11 +216,10 @@ return new class extends Migration
             $table->string('event');
             $table->string('event_label');
             $table->string('sha_sign');
-            
-            $table->timestamps();
         });
     }
-        /**
+
+    /**
      * Reverse the migrations.
      */
     public function down(): void
