@@ -1,5 +1,5 @@
 <?php
-
+///kskks
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->id(); //teste
             $table->timestamps(); // Isso já cria as colunas created_at e updated_at
 
             // Campos relacionados ao endereço
